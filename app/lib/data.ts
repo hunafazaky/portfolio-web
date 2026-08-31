@@ -14,14 +14,7 @@
 // statically analyzable.
 
 import { api } from "./api";
-import type {
-  Profile,
-  Experience,
-  Project,
-  Education,
-  Skill,
-  Certificate,
-} from "./types";
+import type { Profile, Experience, Project, Education, Skill, Certificate } from "./types";
 
 export type Lang = "en" | "id";
 
@@ -38,10 +31,7 @@ async function loadBilingual<T>(
   return mod.default as T;
 }
 
-async function loadUniversal<T>(
-  devPath: string,
-  loadStatic: () => Promise<{ default: T }>,
-): Promise<T> {
+async function loadUniversal<T>(devPath: string, loadStatic: () => Promise<{ default: T }>): Promise<T> {
   if (import.meta.env.DEV) {
     return api.get<T>(devPath);
   }
@@ -82,11 +72,7 @@ export const getEducation = (lang: Lang = "en") =>
   );
 
 // Skills and certificates have no bilingual fields — one file, no lang param.
-export const getSkills = () =>
-  loadUniversal<Skill[]>("/api/skills", () => import("~/data/skills.json"));
+export const getSkills = () => loadUniversal<Skill[]>("/api/skills", () => import("~/data/skills.json"));
 
 export const getCertificates = () =>
-  loadUniversal<Certificate[]>(
-    "/api/certificates",
-    () => import("~/data/certificates.json"),
-  );
+  loadUniversal<Certificate[]>("/api/certificates", () => import("~/data/certificates.json"));

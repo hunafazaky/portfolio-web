@@ -33,18 +33,16 @@ export default function DashboardOverview() {
       api.get<Skill[]>("/api/admin/skills"),
       api.get<Certificate[]>("/api/admin/certificates"),
       api.get<ContactMessage[]>("/api/admin/contact-messages"),
-    ]).then(
-      ([experiences, projects, education, skills, certificates, messages]) => {
-        setCounts({
-          experiences: experiences.length,
-          projects: projects.length,
-          education: education.length,
-          skills: skills.length,
-          certificates: certificates.length,
-          unreadMessages: messages.filter((m) => !m.read_at).length,
-        });
-      },
-    );
+    ]).then(([experiences, projects, education, skills, certificates, messages]) => {
+      setCounts({
+        experiences: experiences.length,
+        projects: projects.length,
+        education: education.length,
+        skills: skills.length,
+        certificates: certificates.length,
+        unreadMessages: messages.filter((m) => !m.read_at).length,
+      });
+    });
   }, []);
 
   const stats = counts
@@ -54,35 +52,23 @@ export default function DashboardOverview() {
         { label: t("dashboard.education"), value: counts.education },
         { label: t("dashboard.skills"), value: counts.skills },
         { label: t("dashboard.certificates"), value: counts.certificates },
-        {
-          label: t("dashboard.messages"),
-          value: counts.unreadMessages,
-          highlight: counts.unreadMessages > 0,
-        },
+        { label: t("dashboard.messages"), value: counts.unreadMessages, highlight: counts.unreadMessages > 0 },
       ]
     : [];
 
   return (
     <div>
-      <h1 className="mb-6 font-mono text-lg font-semibold text-foreground">
-        {t("dashboard.overview")}
-      </h1>
+      <h1 className="mb-6 font-mono text-lg font-semibold text-foreground">{t("dashboard.overview")}</h1>
       {!counts ? (
-        <p className="font-mono text-sm text-foreground-muted">
-          {t("dashboard.loading")}
-        </p>
+        <p className="font-mono text-sm text-foreground-muted">{t("dashboard.loading")}</p>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {stats.map((s) => (
             <Card key={s.label}>
-              <p
-                className={`text-2xl font-semibold ${s.highlight ? "text-primary" : "text-foreground"}`}
-              >
+              <p className={`text-2xl font-semibold ${s.highlight ? "text-primary" : "text-foreground"}`}>
                 {s.value}
               </p>
-              <p className="mt-1 font-mono text-xs text-foreground-muted">
-                {s.label}
-              </p>
+              <p className="mt-1 font-mono text-xs text-foreground-muted">{s.label}</p>
             </Card>
           ))}
         </div>

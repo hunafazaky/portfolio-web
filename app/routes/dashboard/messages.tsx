@@ -26,31 +26,17 @@ export default function DashboardMessages() {
 
   async function markRead(id: number) {
     await api.post(`/api/admin/contact-messages/${id}/read`);
-    setItems(
-      (prev) =>
-        prev?.map((m) =>
-          m.id === id ? { ...m, read_at: new Date().toISOString() } : m,
-        ) ?? prev,
-    );
+    setItems((prev) => prev?.map((m) => (m.id === id ? { ...m, read_at: new Date().toISOString() } : m)) ?? prev);
   }
 
-  if (!items)
-    return (
-      <p className="font-mono text-sm text-foreground-muted">
-        {t("dashboard.loading")}
-      </p>
-    );
+  if (!items) return <p className="font-mono text-sm text-foreground-muted">{t("dashboard.loading")}</p>;
 
   return (
     <div>
-      <h1 className="mb-6 font-mono text-lg font-semibold text-foreground">
-        {t("dashboard.messages")}
-      </h1>
+      <h1 className="mb-6 font-mono text-lg font-semibold text-foreground">{t("dashboard.messages")}</h1>
 
       {items.length === 0 ? (
-        <p className="font-mono text-sm text-foreground-muted">
-          No messages yet.
-        </p>
+        <p className="font-mono text-sm text-foreground-muted">No messages yet.</p>
       ) : (
         <div className="space-y-3">
           {items.map((m) => (
@@ -58,10 +44,7 @@ export default function DashboardMessages() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="font-medium text-foreground">
-                    {m.name}{" "}
-                    <span className="font-mono text-xs text-foreground-muted">
-                      &lt;{m.email}&gt;
-                    </span>
+                    {m.name} <span className="font-mono text-xs text-foreground-muted">&lt;{m.email}&gt;</span>
                   </p>
                   <p className="font-mono text-xs text-foreground-muted">
                     {new Date(m.created_at).toLocaleString()}
@@ -81,9 +64,7 @@ export default function DashboardMessages() {
                   </span>
                 )}
               </div>
-              <p className="mt-3 whitespace-pre-wrap text-sm text-foreground-muted">
-                {m.message}
-              </p>
+              <p className="mt-3 whitespace-pre-wrap text-sm text-foreground-muted">{m.message}</p>
             </Card>
           ))}
         </div>

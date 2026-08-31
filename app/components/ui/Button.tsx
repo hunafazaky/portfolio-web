@@ -16,12 +16,7 @@ export function Button({
   className = "",
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant }) {
-  return (
-    <button
-      className={`${base} ${variants[variant]} ${className}`}
-      {...props}
-    />
-  );
+  return <button className={`${base} ${variants[variant]} ${className}`} {...props} />;
 }
 
 export function LinkButton({
@@ -29,7 +24,5 @@ export function LinkButton({
   className = "",
   ...props
 }: AnchorHTMLAttributes<HTMLAnchorElement> & { variant?: Variant }) {
-  return (
-    <a className={`${base} ${variants[variant]} ${className}`} {...props} />
-  );
+  return <a className={`${base} ${variants[variant]} ${className}`} {...props} />;
 }

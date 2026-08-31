@@ -4,11 +4,7 @@ import { Card } from "~/components/ui/Card";
 import { Badge } from "~/components/ui/Badge";
 import type { Certificate as CertificateType } from "~/lib/types";
 
-export function Certificate({
-  certificates,
-}: {
-  certificates: CertificateType[];
-}) {
+export function Certificate({ certificates }: { certificates: CertificateType[] }) {
   const { t } = useTranslation();
   if (certificates.length === 0) return null;
   return (
@@ -24,21 +20,13 @@ export function Certificate({
           >
             <Card className="h-full">
               {c.image_url && (
-                <img
-                  src={c.image_url}
-                  alt={c.title}
-                  className="mb-3 aspect-video rounded-md object-cover"
-                />
+                <img src={c.image_url} alt={c.title} className="mb-3 aspect-video rounded-md object-cover" />
               )}
               <div className="flex items-start justify-between gap-2">
-                <h3 className="text-sm font-semibold text-foreground">
-                  {c.title}
-                </h3>
+                <h3 className="text-sm font-semibold text-foreground">{c.title}</h3>
                 {c.category && <Badge>{c.category}</Badge>}
               </div>
-              {c.issuer && (
-                <p className="mt-1 text-xs text-foreground-muted">{c.issuer}</p>
-              )}
+              {c.issuer && <p className="mt-1 text-xs text-foreground-muted">{c.issuer}</p>}
             </Card>
           </a>
         ))}

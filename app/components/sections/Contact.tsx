@@ -1,10 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslation } from "react-i18next";
-import {
-  CheckCircleIcon,
-  ExclamationCircleIcon,
-} from "@heroicons/react/24/outline";
+import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import { Section } from "~/components/ui/Section";
 import { Button } from "~/components/ui/Button";
 import { api, ApiError } from "~/lib/api";
@@ -34,23 +31,11 @@ function PendingDots() {
   );
 }
 
-function StatusCard({
-  status,
-  onRetry,
-}: {
-  status: "sending" | "success" | "error";
-  onRetry: () => void;
-}) {
+function StatusCard({ status, onRetry }: { status: "sending" | "success" | "error"; onRetry: () => void }) {
   const { t } = useTranslation();
   const copy = {
-    sending: {
-      title: t("contact.pendingTitle"),
-      body: t("contact.pendingBody"),
-    },
-    success: {
-      title: t("contact.successTitle"),
-      body: t("contact.successBody"),
-    },
+    sending: { title: t("contact.pendingTitle"), body: t("contact.pendingBody") },
+    success: { title: t("contact.successTitle"), body: t("contact.successBody") },
     error: { title: t("contact.errorTitle"), body: t("contact.errorBody") },
   }[status];
 
@@ -66,12 +51,8 @@ function StatusCard({
       {status === "sending" && (
         <span className="mt-0.5 size-5 shrink-0 animate-spin rounded-full border-2 border-primary border-t-transparent" />
       )}
-      {status === "success" && (
-        <CheckCircleIcon className="mt-0.5 size-5 shrink-0 text-success" />
-      )}
-      {status === "error" && (
-        <ExclamationCircleIcon className="mt-0.5 size-5 shrink-0 text-danger" />
-      )}
+      {status === "success" && <CheckCircleIcon className="mt-0.5 size-5 shrink-0 text-success" />}
+      {status === "error" && <ExclamationCircleIcon className="mt-0.5 size-5 shrink-0 text-danger" />}
 
       <div>
         <p className="font-mono text-sm font-medium text-foreground">
@@ -124,10 +105,7 @@ export function Contact() {
             className="max-w-lg space-y-4"
           >
             <div>
-              <label
-                htmlFor="name"
-                className="mb-1 block font-mono text-xs text-foreground-muted"
-              >
+              <label htmlFor="name" className="mb-1 block font-mono text-xs text-foreground-muted">
                 {t("contact.name")}
               </label>
               <input
@@ -138,10 +116,7 @@ export function Contact() {
               />
             </div>
             <div>
-              <label
-                htmlFor="email"
-                className="mb-1 block font-mono text-xs text-foreground-muted"
-              >
+              <label htmlFor="email" className="mb-1 block font-mono text-xs text-foreground-muted">
                 {t("contact.email")}
               </label>
               <input
@@ -153,10 +128,7 @@ export function Contact() {
               />
             </div>
             <div>
-              <label
-                htmlFor="message"
-                className="mb-1 block font-mono text-xs text-foreground-muted"
-              >
+              <label htmlFor="message" className="mb-1 block font-mono text-xs text-foreground-muted">
                 {t("contact.message")}
               </label>
               <textarea

@@ -26,9 +26,7 @@ export default function Home() {
   if (error) {
     return (
       <main className="flex min-h-screen items-center justify-center px-6 text-center">
-        <p className="font-mono text-sm text-danger">
-          Failed to load portfolio data: {error.message}
-        </p>
+        <p className="font-mono text-sm text-danger">Failed to load portfolio data: {error.message}</p>
       </main>
     );
   }

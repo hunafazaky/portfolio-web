@@ -52,9 +52,7 @@ export function Sidebar() {
             end={end}
             className={({ isActive }) =>
               `flex items-center gap-2 rounded-md px-3 py-2 font-mono text-sm transition-colors ${
-                isActive
-                  ? "bg-primary text-background"
-                  : "text-foreground-muted hover:bg-surface-alt"
+                isActive ? "bg-primary text-background" : "text-foreground-muted hover:bg-surface-alt"
               }`
             }
           >

@@ -9,11 +9,7 @@ export function ThemeToggle() {
       aria-label="Toggle theme"
       className="rounded-md border border-border p-2 text-foreground-muted hover:text-foreground"
     >
-      {theme === "dark" ? (
-        <SunIcon className="size-4" />
-      ) : (
-        <MoonIcon className="size-4" />
-      )}
+      {theme === "dark" ? <SunIcon className="size-4" /> : <MoonIcon className="size-4" />}
     </button>
   );
 }

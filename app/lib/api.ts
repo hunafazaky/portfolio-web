@@ -1,6 +1,9 @@
 // Thin typed fetch client for the live API — used directly by the
 // dashboard (always live) and by lib/data.ts in dev mode. Never used by
 // the public site in production builds; see lib/data.ts.
+//
+// Admin requests are authenticated via a bearer token (see lib/auth.ts)
+// rather than a cookie — see the comment there for why.
 
 const API_URL = import.meta.env.VITE_API_URL as string;
 
@@ -25,20 +28,21 @@ type Envelope<T> = {
   error?: string;
 };
 
+function authHeader(): Record<string, string> {
+  const token = window.sessionStorage.getItem("portfolio_admin_token");
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, {
     ...init,
-    credentials: "include", // required for the dashboard's session cookie
-    headers: { "Content-Type": "application/json", ...init?.headers },
+    headers: { "Content-Type": "application/json", ...authHeader(), ...init?.headers },
   });
 
   const body = (await res.json().catch(() => ({}))) as Envelope<T>;
 
   if (!res.ok) {
-    throw new ApiError(
-      res.status,
-      body.error ?? `request failed (${res.status})`,
-    );
+    throw new ApiError(res.status, body.error ?? `request failed (${res.status})`);
   }
   return body.data as T;
 }
@@ -46,15 +50,9 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 export const api = {
   get: <T>(path: string) => request<T>(path),
   post: <T>(path: string, body?: unknown) =>
-    request<T>(path, {
-      method: "POST",
-      body: body ? JSON.stringify(body) : undefined,
-    }),
+    request<T>(path, { method: "POST", body: body ? JSON.stringify(body) : undefined }),
   put: <T>(path: string, body?: unknown) =>
-    request<T>(path, {
-      method: "PUT",
-      body: body ? JSON.stringify(body) : undefined,
-    }),
+    request<T>(path, { method: "PUT", body: body ? JSON.stringify(body) : undefined }),
   delete: <T>(path: string) => request<T>(path, { method: "DELETE" }),
 
   // multipart, so it skips the JSON Content-Type header above
@@ -63,12 +61,10 @@ export const api = {
     form.append("file", file);
     const res = await fetch(`${API_URL}/api/admin/uploads`, {
       method: "POST",
-      credentials: "include",
+      headers: authHeader(),
       body: form,
     });
-    const body = (await res.json().catch(() => ({}))) as Envelope<{
-      url: string;
-    }>;
+    const body = (await res.json().catch(() => ({}))) as Envelope<{ url: string }>;
     if (!res.ok) throw new ApiError(res.status, body.error ?? "upload failed");
     return body.data as { url: string };
   },

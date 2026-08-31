@@ -53,11 +53,7 @@ export default function DashboardEducation() {
 
   function startEdit(e: Education) {
     const { id, ...rest } = e;
-    setForm({
-      ...rest,
-      start_date: rest.start_date ?? "",
-      end_date: rest.end_date ?? "",
-    });
+    setForm({ ...rest, start_date: rest.start_date ?? "", end_date: rest.end_date ?? "" });
     setEditingId(id);
   }
 
@@ -83,19 +79,12 @@ export default function DashboardEducation() {
     refresh();
   }
 
-  if (!items)
-    return (
-      <p className="font-mono text-sm text-foreground-muted">
-        {t("dashboard.loading")}
-      </p>
-    );
+  if (!items) return <p className="font-mono text-sm text-foreground-muted">{t("dashboard.loading")}</p>;
 
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="font-mono text-lg font-semibold text-foreground">
-          {t("dashboard.education")}
-        </h1>
+        <h1 className="font-mono text-lg font-semibold text-foreground">{t("dashboard.education")}</h1>
         {editingId === null && (
           <Button onClick={startCreate}>
             <PlusIcon className="size-4" /> {t("dashboard.create")}
@@ -110,9 +99,7 @@ export default function DashboardEducation() {
               <input
                 className={inputClass}
                 value={form.institution}
-                onChange={(e) =>
-                  setForm({ ...form, institution: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, institution: e.target.value })}
                 required
               />
             </Field>
@@ -135,12 +122,7 @@ export default function DashboardEducation() {
                 <select
                   className={inputClass}
                   value={form.category}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      category: e.target.value as FormState["category"],
-                    })
-                  }
+                  onChange={(e) => setForm({ ...form, category: e.target.value as FormState["category"] })}
                 >
                   <option value="">—</option>
                   <option value="formal">formal</option>
@@ -154,9 +136,7 @@ export default function DashboardEducation() {
                   type="date"
                   className={inputClass}
                   value={form.start_date ?? ""}
-                  onChange={(e) =>
-                    setForm({ ...form, start_date: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, start_date: e.target.value })}
                 />
               </Field>
               <Field label="End date">
@@ -164,9 +144,7 @@ export default function DashboardEducation() {
                   type="date"
                   className={inputClass}
                   value={form.end_date ?? ""}
-                  onChange={(e) =>
-                    setForm({ ...form, end_date: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, end_date: e.target.value })}
                 />
               </Field>
             </div>
@@ -175,9 +153,7 @@ export default function DashboardEducation() {
                 className={inputClass}
                 rows={3}
                 value={form.description_en}
-                onChange={(e) =>
-                  setForm({ ...form, description_en: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, description_en: e.target.value })}
               />
             </Field>
             <Field label="Description (Indonesian)">
@@ -185,9 +161,7 @@ export default function DashboardEducation() {
                 className={inputClass}
                 rows={3}
                 value={form.description_id}
-                onChange={(e) =>
-                  setForm({ ...form, description_id: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, description_id: e.target.value })}
               />
             </Field>
             <Field label="Sort order">
@@ -195,20 +169,14 @@ export default function DashboardEducation() {
                 type="number"
                 className={inputClass}
                 value={form.sort_order}
-                onChange={(e) =>
-                  setForm({ ...form, sort_order: Number(e.target.value) })
-                }
+                onChange={(e) => setForm({ ...form, sort_order: Number(e.target.value) })}
               />
             </Field>
             <div className="flex gap-3">
               <Button type="submit" disabled={saving}>
                 {saving ? t("dashboard.saving") : t("dashboard.save")}
               </Button>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setEditingId(null)}
-              >
+              <Button type="button" variant="outline" onClick={() => setEditingId(null)}>
                 {t("dashboard.cancel")}
               </Button>
             </div>
@@ -226,16 +194,10 @@ export default function DashboardEducation() {
               </p>
             </div>
             <div className="flex gap-2">
-              <button
-                onClick={() => startEdit(e)}
-                className="p-2 text-foreground-muted hover:text-foreground"
-              >
+              <button onClick={() => startEdit(e)} className="p-2 text-foreground-muted hover:text-foreground">
                 <PencilIcon className="size-4" />
               </button>
-              <button
-                onClick={() => handleDelete(e.id)}
-                className="p-2 text-foreground-muted hover:text-danger"
-              >
+              <button onClick={() => handleDelete(e.id)} className="p-2 text-foreground-muted hover:text-danger">
                 <TrashIcon className="size-4" />
               </button>
             </div>

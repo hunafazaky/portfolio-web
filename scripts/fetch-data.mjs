@@ -38,10 +38,7 @@ async function fetchBilingual(name, endpoint) {
     fetchJSON(`${endpoint}?lang=en`),
     fetchJSON(`${endpoint}?lang=id`),
   ]);
-  await Promise.all([
-    writeData(`${name}.en.json`, en),
-    writeData(`${name}.id.json`, id),
-  ]);
+  await Promise.all([writeData(`${name}.en.json`, en), writeData(`${name}.id.json`, id)]);
 }
 
 async function main() {
@@ -53,9 +50,7 @@ async function main() {
     fetchBilingual("projects", "/api/projects"),
     fetchBilingual("education", "/api/education"),
     fetchJSON("/api/skills").then((data) => writeData("skills.json", data)),
-    fetchJSON("/api/certificates").then((data) =>
-      writeData("certificates.json", data),
-    ),
+    fetchJSON("/api/certificates").then((data) => writeData("certificates.json", data)),
   ]);
 
   console.log("fetch-data: done");

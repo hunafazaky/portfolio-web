@@ -7,9 +7,7 @@ export function Summary({ profile }: { profile: Profile }) {
   if (!profile.summary) return null;
   return (
     <Section id="summary" title={t("sections.summary")}>
-      <p className="max-w-2xl leading-relaxed text-foreground-muted">
-        {profile.summary}
-      </p>
+      <p className="max-w-2xl leading-relaxed text-foreground-muted">{profile.summary}</p>
     </Section>
   );
 }

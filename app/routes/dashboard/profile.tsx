@@ -49,18 +49,12 @@ export default function DashboardProfile() {
   }
 
   if (!profile) {
-    return (
-      <p className="font-mono text-sm text-foreground-muted">
-        {t("dashboard.loading")}
-      </p>
-    );
+    return <p className="font-mono text-sm text-foreground-muted">{t("dashboard.loading")}</p>;
   }
 
   return (
     <div>
-      <h1 className="mb-6 font-mono text-lg font-semibold text-foreground">
-        {t("dashboard.profile")}
-      </h1>
+      <h1 className="mb-6 font-mono text-lg font-semibold text-foreground">{t("dashboard.profile")}</h1>
 
       <form onSubmit={handleSubmit} className="max-w-xl space-y-4">
         <Field label="Name">
@@ -85,9 +79,7 @@ export default function DashboardProfile() {
             className={inputClass}
             rows={5}
             value={profile.summary_en}
-            onChange={(e) =>
-              setProfile({ ...profile, summary_en: e.target.value })
-            }
+            onChange={(e) => setProfile({ ...profile, summary_en: e.target.value })}
           />
         </Field>
 
@@ -96,9 +88,7 @@ export default function DashboardProfile() {
             className={inputClass}
             rows={5}
             value={profile.summary_id}
-            onChange={(e) =>
-              setProfile({ ...profile, summary_id: e.target.value })
-            }
+            onChange={(e) => setProfile({ ...profile, summary_id: e.target.value })}
           />
         </Field>
 
@@ -106,20 +96,15 @@ export default function DashboardProfile() {
           <Button type="submit" disabled={saving}>
             {saving ? t("dashboard.saving") : t("dashboard.save")}
           </Button>
-          {savedAt && !saving && (
-            <span className="font-mono text-xs text-success">Saved</span>
-          )}
+          {savedAt && !saving && <span className="font-mono text-xs text-success">Saved</span>}
         </div>
       </form>
 
       <div className="mt-10 max-w-xl rounded-lg border border-border bg-surface p-4">
         <p className="font-mono text-xs text-foreground-muted">
-          Speed-Read summary and resume PDF are generated automatically (not
-          built yet) — read-only for now:
+          Speed-Read summary and resume PDF are generated automatically (not built yet) — read-only for now:
         </p>
-        <p className="mt-2 text-sm text-foreground-muted">
-          {profile.speedread_en || "—"}
-        </p>
+        <p className="mt-2 text-sm text-foreground-muted">{profile.speedread_en || "—"}</p>
       </div>
     </div>
   );

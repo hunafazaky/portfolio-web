@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* Class-based dark mode (Tailwind v4 recipe) — toggled by
+   components/layout/ThemeToggle.tsx, not by prefers-color-scheme alone. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Nord palette, light-first in :root, dark override in .dark. See
+   portfolio-frontend-context.md for the full token table and Nord source
+   names (nord0–nord15). Dark is the primary/default ambiance (Nord is a
+   dark-native palette) — root.tsx sets .dark by default before paint. */
+:root {
+  --color-background: #eceff4; /* nord6 */
+  --color-surface: #e5e9f0; /* nord5 */
+  --color-surface-alt: #d8dee9; /* nord4 */
+  --color-border: #d8dee9; /* nord4 */
+  --color-foreground: #2e3440; /* nord0 */
+  --color-foreground-muted: #4c566a; /* nord3 */
+  --color-primary: #5e81ac; /* nord10 */
+  --color-primary-hover: #81a1c1; /* nord9 */
+  --color-accent-teal: #8fbcbb; /* nord7 */
+  --color-success: #a3be8c; /* nord14 */
+  --color-warning: #ebcb8b; /* nord13 */
+  --color-danger: #bf616a; /* nord11 */
+  --color-accent-purple: #b48ead; /* nord15 */
+}
+
+.dark {
+  --color-background: #2e3440; /* nord0 */
+  --color-surface: #3b4252; /* nord1 */
+  --color-surface-alt: #434c5e; /* nord2 */
+  --color-border: #4c566a; /* nord3 */
+  --color-foreground: #eceff4; /* nord6 */
+  --color-foreground-muted: #d8dee9; /* nord4 */
+  --color-primary: #88c0d0; /* nord8 */
+  --color-primary-hover: #81a1c1; /* nord9 */
+  --color-accent-teal: #8fbcbb; /* nord7 */
+  --color-success: #a3be8c; /* nord14 */
+  --color-warning: #ebcb8b; /* nord13 */
+  --color-danger: #bf616a; /* nord11 */
+  --color-accent-purple: #b48ead; /* nord15 */
+}
+
+/* @theme inline lets these utilities (bg-background, text-foreground,
+   border-border, etc.) resolve the CSS variables above at runtime, so the
+   same class works in both light and dark without duplicating markup. */
+@theme inline {
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-surface-alt: var(--color-surface-alt);
+  --color-border: var(--color-border);
+  --color-foreground: var(--color-foreground);
+  --color-foreground-muted: var(--color-foreground-muted);
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-accent-teal: var(--color-accent-teal);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-danger: var(--color-danger);
+  --color-accent-purple: var(--color-accent-purple);
+
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* Blueprint-grid backdrop — thin hairlines in the border color, used on
+   section wrappers (see components/ui/Section.tsx) rather than globally,
+   so it doesn't fight with dashboard tables/forms. */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--color-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center;
+}

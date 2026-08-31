@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "summary": "Tentang",
+    "experience": "Pengalaman",
+    "projects": "Proyek",
+    "education": "Pendidikan",
+    "skills": "Keahlian",
+    "certificates": "Sertifikat",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "downloadResume": "Unduh CV",
+    "speedRead": "Ringkasan singkat"
+  },
+  "sections": {
+    "summary": "Tentang",
+    "experience": "Pengalaman",
+    "projects": "Proyek",
+    "education": "Pendidikan",
+    "skills": "Keahlian",
+    "certificates": "Sertifikat",
+    "contact": "Hubungi saya"
+  },
+  "contact": {
+    "name": "Nama",
+    "email": "Email",
+    "message": "Pesan",
+    "send": "Kirim pesan",
+    "pendingTitle": "Mengirim pesan Anda",
+    "pendingBody": "Ini bisa memakan waktu sebentar — Anda bisa terus menjelajahi atau menutup halaman ini, pesan akan tetap terkirim.",
+    "successTitle": "Pesan terkirim",
+    "successBody": "Terima kasih telah menghubungi saya — saya akan segera membalas.",
+    "errorTitle": "Terjadi kesalahan",
+    "errorBody": "Pesan Anda tidak terkirim. Silakan coba lagi.",
+    "tryAgain": "Coba lagi"
+  },
+  "project": {
+    "viewProject": "Lihat proyek",
+    "viewCode": "Lihat kode"
+  },
+  "footer": {
+    "rights": "Hak cipta dilindungi."
+  },
+  "dashboard": {
+    "login": "Masuk dengan GitHub",
+    "logout": "Keluar",
+    "overview": "Ringkasan",
+    "profile": "Profil",
+    "experiences": "Pengalaman",
+    "projects": "Proyek",
+    "education": "Pendidikan",
+    "skills": "Keahlian",
+    "certificates": "Sertifikat",
+    "messages": "Pesan",
+    "save": "Simpan",
+    "saving": "Menyimpan...",
+    "cancel": "Batal",
+    "delete": "Hapus",
+    "create": "Tambah baru",
+    "loading": "Memuat...",
+    "confirmDelete": "Hapus ini? Tindakan ini tidak dapat dibatalkan."
+  }
+}

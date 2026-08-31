@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "summary": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "education": "Education",
+    "skills": "Skills",
+    "certificates": "Certificates",
+    "contact": "Contact"
+  },
+  "hero": {
+    "downloadResume": "Download Resume",
+    "speedRead": "Quick summary"
+  },
+  "sections": {
+    "summary": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "education": "Education",
+    "skills": "Skills",
+    "certificates": "Certificates",
+    "contact": "Get in touch"
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send message",
+    "pendingTitle": "Sending your message",
+    "pendingBody": "This can take a moment — feel free to keep exploring or close the page, it'll go through.",
+    "successTitle": "Message sent",
+    "successBody": "Thanks for reaching out — I'll get back to you soon.",
+    "errorTitle": "Something went wrong",
+    "errorBody": "Your message wasn't sent. Please try again.",
+    "tryAgain": "Try again"
+  },
+  "project": {
+    "viewProject": "View project",
+    "viewCode": "View code"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "dashboard": {
+    "login": "Sign in with GitHub",
+    "logout": "Log out",
+    "overview": "Overview",
+    "profile": "Profile",
+    "experiences": "Experiences",
+    "projects": "Projects",
+    "education": "Education",
+    "skills": "Skills",
+    "certificates": "Certificates",
+    "messages": "Messages",
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "create": "Add new",
+    "loading": "Loading...",
+    "confirmDelete": "Delete this? This can't be undone."
+  }
+}

@@ -4,7 +4,13 @@
 // first paint, so there's no flash of the wrong theme; this context just
 // keeps React's state in sync with that class for the toggle button.
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 const STORAGE_KEY = "portfolio_theme";
 export type Theme = "light" | "dark";
@@ -27,7 +33,9 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof document === "undefined") return "dark";
-    return document.documentElement.classList.contains("dark") ? "dark" : "light";
+    return document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
   });
 
   useEffect(() => {
@@ -39,7 +47,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setTheme((t) => (t === "dark" ? "light" : "dark"));
   }
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
 
 export function useTheme(): ThemeContextValue {

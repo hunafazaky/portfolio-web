@@ -8,7 +8,9 @@ import type { Skill as SkillType } from "~/lib/types";
 // the dashboard when creating/editing a skill. Falls back to a generic
 // icon if the stored key doesn't match a known heroicon.
 function SkillIcon({ iconKey }: { iconKey: string }) {
-  const Icon = (HeroIcons as Record<string, React.ComponentType<{ className?: string }>>)[iconKey];
+  const Icon = (
+    HeroIcons as Record<string, React.ComponentType<{ className?: string }>>
+  )[iconKey];
   const Resolved = Icon ?? CodeBracketSquareIcon;
   return <Resolved className="size-6 text-primary" />;
 }
@@ -26,7 +28,9 @@ export function Skill({ skills }: { skills: SkillType[] }) {
             title={skill.name}
           >
             <SkillIcon iconKey={skill.icon_key} />
-            <span className="font-mono text-xs text-foreground-muted">{skill.name}</span>
+            <span className="font-mono text-xs text-foreground-muted">
+              {skill.name}
+            </span>
           </div>
         ))}
       </div>

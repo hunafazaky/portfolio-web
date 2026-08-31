@@ -4,7 +4,13 @@
 // localStorage; this is a real deployed site, not a sandboxed preview, so
 // localStorage is fine here.
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import i18n from "./i18n";
 import type { Lang } from "./data";
 
@@ -36,7 +42,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLangState(next);
   }
 
-  return <LanguageContext.Provider value={{ lang, setLang }}>{children}</LanguageContext.Provider>;
+  return (
+    <LanguageContext.Provider value={{ lang, setLang }}>
+      {children}
+    </LanguageContext.Provider>
+  );
 }
 
 export function useLang(): LanguageContextValue {

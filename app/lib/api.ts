@@ -35,7 +35,10 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const body = (await res.json().catch(() => ({}))) as Envelope<T>;
 
   if (!res.ok) {
-    throw new ApiError(res.status, body.error ?? `request failed (${res.status})`);
+    throw new ApiError(
+      res.status,
+      body.error ?? `request failed (${res.status})`,
+    );
   }
   return body.data as T;
 }
@@ -43,9 +46,15 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 export const api = {
   get: <T>(path: string) => request<T>(path),
   post: <T>(path: string, body?: unknown) =>
-    request<T>(path, { method: "POST", body: body ? JSON.stringify(body) : undefined }),
+    request<T>(path, {
+      method: "POST",
+      body: body ? JSON.stringify(body) : undefined,
+    }),
   put: <T>(path: string, body?: unknown) =>
-    request<T>(path, { method: "PUT", body: body ? JSON.stringify(body) : undefined }),
+    request<T>(path, {
+      method: "PUT",
+      body: body ? JSON.stringify(body) : undefined,
+    }),
   delete: <T>(path: string) => request<T>(path, { method: "DELETE" }),
 
   // multipart, so it skips the JSON Content-Type header above
@@ -57,7 +66,9 @@ export const api = {
       credentials: "include",
       body: form,
     });
-    const body = (await res.json().catch(() => ({}))) as Envelope<{ url: string }>;
+    const body = (await res.json().catch(() => ({}))) as Envelope<{
+      url: string;
+    }>;
     if (!res.ok) throw new ApiError(res.status, body.error ?? "upload failed");
     return body.data as { url: string };
   },

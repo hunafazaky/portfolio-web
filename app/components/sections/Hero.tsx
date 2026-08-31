@@ -27,7 +27,12 @@ export function Hero({ profile }: { profile: Profile }) {
           )}
 
           {profile.resume_pdf_url && (
-            <LinkButton href={profile.resume_pdf_url} target="_blank" rel="noreferrer" className="mt-8">
+            <LinkButton
+              href={profile.resume_pdf_url}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-8"
+            >
               <ArrowDownTrayIcon className="size-4" />
               {t("hero.downloadResume")}
             </LinkButton>

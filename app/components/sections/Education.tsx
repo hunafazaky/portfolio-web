@@ -20,7 +20,11 @@ export function Education({ education }: { education: EducationType[] }) {
                 {[e.degree, e.field].filter(Boolean).join(" · ")}
               </p>
             )}
-            {e.description && <p className="mt-2 text-sm text-foreground-muted">{e.description}</p>}
+            {e.description && (
+              <p className="mt-2 text-sm text-foreground-muted">
+                {e.description}
+              </p>
+            )}
           </div>
         ))}
       </div>

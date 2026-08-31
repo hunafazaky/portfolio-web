@@ -15,7 +15,14 @@ import {
   getCertificates,
   type Lang,
 } from "~/lib/data";
-import type { Profile, Experience, Project, Education, Skill, Certificate } from "~/lib/types";
+import type {
+  Profile,
+  Experience,
+  Project,
+  Education,
+  Skill,
+  Certificate,
+} from "~/lib/types";
 
 type PortfolioData = {
   profile: Profile;
@@ -42,11 +49,26 @@ export function usePortfolioData(lang: Lang) {
       getSkills(),
       getCertificates(),
     ])
-      .then(([profile, experiences, projects, education, skills, certificates]) => {
-        if (!cancelled) setData({ profile, experiences, projects, education, skills, certificates });
-      })
+      .then(
+        ([profile, experiences, projects, education, skills, certificates]) => {
+          if (!cancelled)
+            setData({
+              profile,
+              experiences,
+              projects,
+              education,
+              skills,
+              certificates,
+            });
+        },
+      )
       .catch((err: unknown) => {
-        if (!cancelled) setError(err instanceof Error ? err : new Error("failed to load portfolio data"));
+        if (!cancelled)
+          setError(
+            err instanceof Error
+              ? err
+              : new Error("failed to load portfolio data"),
+          );
       });
 
     return () => {

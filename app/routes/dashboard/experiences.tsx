@@ -78,12 +78,19 @@ export default function DashboardExperiences() {
     refresh();
   }
 
-  if (!items) return <p className="font-mono text-sm text-foreground-muted">{t("dashboard.loading")}</p>;
+  if (!items)
+    return (
+      <p className="font-mono text-sm text-foreground-muted">
+        {t("dashboard.loading")}
+      </p>
+    );
 
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="font-mono text-lg font-semibold text-foreground">{t("dashboard.experiences")}</h1>
+        <h1 className="font-mono text-lg font-semibold text-foreground">
+          {t("dashboard.experiences")}
+        </h1>
         {editingId === null && (
           <Button onClick={startCreate}>
             <PlusIcon className="size-4" /> {t("dashboard.create")}
@@ -99,7 +106,9 @@ export default function DashboardExperiences() {
                 <input
                   className={inputClass}
                   value={form.company}
-                  onChange={(e) => setForm({ ...form, company: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, company: e.target.value })
+                  }
                   required
                 />
               </Field>
@@ -125,7 +134,9 @@ export default function DashboardExperiences() {
                   type="date"
                   className={inputClass}
                   value={form.start_date}
-                  onChange={(e) => setForm({ ...form, start_date: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, start_date: e.target.value })
+                  }
                   required
                 />
               </Field>
@@ -134,7 +145,9 @@ export default function DashboardExperiences() {
                   type="date"
                   className={inputClass}
                   value={form.end_date ?? ""}
-                  onChange={(e) => setForm({ ...form, end_date: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, end_date: e.target.value })
+                  }
                 />
               </Field>
             </div>
@@ -143,7 +156,9 @@ export default function DashboardExperiences() {
                 className={inputClass}
                 rows={3}
                 value={form.description_en}
-                onChange={(e) => setForm({ ...form, description_en: e.target.value })}
+                onChange={(e) =>
+                  setForm({ ...form, description_en: e.target.value })
+                }
               />
             </Field>
             <Field label="Description (Indonesian)">
@@ -151,7 +166,9 @@ export default function DashboardExperiences() {
                 className={inputClass}
                 rows={3}
                 value={form.description_id}
-                onChange={(e) => setForm({ ...form, description_id: e.target.value })}
+                onChange={(e) =>
+                  setForm({ ...form, description_id: e.target.value })
+                }
               />
             </Field>
             <Field label="Sort order">
@@ -159,14 +176,20 @@ export default function DashboardExperiences() {
                 type="number"
                 className={inputClass}
                 value={form.sort_order}
-                onChange={(e) => setForm({ ...form, sort_order: Number(e.target.value) })}
+                onChange={(e) =>
+                  setForm({ ...form, sort_order: Number(e.target.value) })
+                }
               />
             </Field>
             <div className="flex gap-3">
               <Button type="submit" disabled={saving}>
                 {saving ? t("dashboard.saving") : t("dashboard.save")}
               </Button>
-              <Button type="button" variant="outline" onClick={() => setEditingId(null)}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setEditingId(null)}
+              >
                 {t("dashboard.cancel")}
               </Button>
             </div>
@@ -186,10 +209,16 @@ export default function DashboardExperiences() {
               </p>
             </div>
             <div className="flex gap-2">
-              <button onClick={() => startEdit(exp)} className="p-2 text-foreground-muted hover:text-foreground">
+              <button
+                onClick={() => startEdit(exp)}
+                className="p-2 text-foreground-muted hover:text-foreground"
+              >
                 <PencilIcon className="size-4" />
               </button>
-              <button onClick={() => handleDelete(exp.id)} className="p-2 text-foreground-muted hover:text-danger">
+              <button
+                onClick={() => handleDelete(exp.id)}
+                className="p-2 text-foreground-muted hover:text-danger"
+              >
                 <TrashIcon className="size-4" />
               </button>
             </div>

@@ -9,7 +9,9 @@ export function LanguageSwitch() {
           key={code}
           onClick={() => setLang(code)}
           className={`px-2 py-1.5 uppercase transition-colors ${
-            lang === code ? "bg-primary text-background" : "text-foreground-muted hover:text-foreground"
+            lang === code
+              ? "bg-primary text-background"
+              : "text-foreground-muted hover:text-foreground"
           }`}
         >
           {code}

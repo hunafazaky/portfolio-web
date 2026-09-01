@@ -4,11 +4,22 @@ import { Container } from "./Container";
 import { ContourDivider } from "./ContourDivider";
 import { ParallaxMarks } from "./ParallaxMarks";
 
+// Literal class strings (not built from a template) so Tailwind's build-time
+// scanner can find and generate them — see the comment on `tint` below.
+const tintClasses = {
+  primary: "bg-primary/5",
+  teal: "bg-accent-teal/5",
+  purple: "bg-accent-purple/5",
+  warning: "bg-warning/5",
+  success: "bg-success/5",
+} as const;
+
 export function Section({
   id,
   title,
   side = "left",
   wide = false,
+  tint,
   children,
 }: {
   id: string;
@@ -21,6 +32,10 @@ export function Section({
    * should stay full-width below the header, rather than being squeezed
    * into the same narrow column as prose sections. */
   wide?: boolean;
+  /** A subtle (5% opacity) background wash distinguishing this section
+   * from its neighbors — each section gets its own accent from the Nord
+   * palette, cycling through the set below. */
+  tint?: keyof typeof tintClasses;
   children: ReactNode;
 }) {
   const ref = useRef<HTMLElement>(null);
@@ -29,7 +44,11 @@ export function Section({
   return (
     <>
       <ContourDivider />
-      <section id={id} ref={ref} className="relative overflow-hidden py-20 scroll-mt-20">
+      <section
+        id={id}
+        ref={ref}
+        className={`relative overflow-hidden py-20 scroll-mt-20 ${tint ? tintClasses[tint] : ""}`}
+      >
         <ParallaxMarks containerRef={ref} side={side} seed={id} />
         <Container className="relative">
           <motion.div

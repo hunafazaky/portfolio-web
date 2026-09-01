@@ -93,7 +93,7 @@ export function Contact() {
   }
 
   return (
-    <Section id="contact" title={t("sections.contact")} side="left">
+    <Section id="contact" title={t("sections.contact")} side="left" tint="primary">
       <AnimatePresence mode="wait">
         {status === "idle" ? (
           <motion.form

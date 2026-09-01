@@ -4,7 +4,7 @@
 // localStorage; this is a real deployed site, not a sandboxed preview, so
 // localStorage is fine here.
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useLayoutEffect, useState, type ReactNode } from "react";
 import i18n from "./i18n";
 import type { Lang } from "./data";
 
@@ -17,17 +17,37 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-function readInitialLang(): Lang {
-  if (typeof window === "undefined") return "en";
+function readStoredLang(): Lang {
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (stored === "en" || stored === "id") return stored;
   return window.navigator.language.startsWith("id") ? "id" : "en";
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(readInitialLang);
+  // Always "en" on first render, client or server/prerender — same
+  // reasoning as ThemeProvider (see lib/theme.tsx): prerendering runs in
+  // Node with no localStorage/navigator to read a real preference from,
+  // so it always falls back to "en". If the client's first render read
+  // localStorage directly instead, it could differ from what was
+  // prerendered for any returning Indonesian-preferring visitor — a
+  // hydration mismatch.
+  //
+  // Trade-off worth knowing: unlike the theme fix, there's no equivalent
+  // of THEME_INIT_SCRIPT here — page *content* (not just an icon) depends
+  // on language, and content can't be set before paint the way a CSS
+  // class can. So a returning "id" visitor will briefly see English
+  // before this corrects it post-mount. Fixing that properly would mean
+  // server-side language detection, which isn't available in a static
+  // GitHub Pages build.
+  const [lang, setLangState] = useState<Lang>("en");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    const actual = readStoredLang();
+    if (actual !== lang) setLangState(actual);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useLayoutEffect(() => {
     i18n.changeLanguage(lang);
   }, [lang]);
 

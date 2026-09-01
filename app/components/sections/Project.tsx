@@ -9,7 +9,7 @@ export function Project({ projects }: { projects: ProjectType[] }) {
   const { t } = useTranslation();
   if (projects.length === 0) return null;
   return (
-    <Section id="projects" title={t("sections.projects")} side="left" wide>
+    <Section id="projects" title={t("sections.projects")} side="left" wide tint="purple">
       <div className="grid gap-6 md:grid-cols-2">
         {projects.map((p) => (
           <Card key={p.id} className="flex flex-col">

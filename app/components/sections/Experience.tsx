@@ -11,7 +11,7 @@ export function Experience({ experiences }: { experiences: ExperienceType[] }) {
   const { t } = useTranslation();
   if (experiences.length === 0) return null;
   return (
-    <Section id="experience" title={t("sections.experience")}>
+    <Section id="experience" title={t("sections.experience")} side="right">
       <ol className="space-y-10 border-l border-border pl-6">
         {experiences.map((exp) => (
           <li key={exp.id} className="relative">

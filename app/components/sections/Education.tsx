@@ -7,7 +7,7 @@ export function Education({ education }: { education: EducationType[] }) {
   const { t } = useTranslation();
   if (education.length === 0) return null;
   return (
-    <Section id="education" title={t("sections.education")}>
+    <Section id="education" title={t("sections.education")} side="right">
       <div className="grid gap-6 md:grid-cols-2">
         {education.map((e) => (
           <div key={e.id} className="border border-border rounded-lg p-6">

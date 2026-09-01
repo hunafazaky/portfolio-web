@@ -6,7 +6,7 @@ export function Summary({ profile }: { profile: Profile }) {
   const { t } = useTranslation();
   if (!profile.summary) return null;
   return (
-    <Section id="summary" title={t("sections.summary")}>
+    <Section id="summary" title={t("sections.summary")} side="left">
       <p className="max-w-2xl leading-relaxed text-foreground-muted">{profile.summary}</p>
     </Section>
   );

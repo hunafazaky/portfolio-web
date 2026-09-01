@@ -17,7 +17,7 @@ export function Skill({ skills }: { skills: SkillType[] }) {
   const { t } = useTranslation();
   if (skills.length === 0) return null;
   return (
-    <Section id="skills" title={t("sections.skills")}>
+    <Section id="skills" title={t("sections.skills")} side="left" wide>
       <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
         {skills.map((skill) => (
           <div

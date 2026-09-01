@@ -8,7 +8,7 @@ export function Certificate({ certificates }: { certificates: CertificateType[] 
   const { t } = useTranslation();
   if (certificates.length === 0) return null;
   return (
-    <Section id="certificates" title={t("sections.certificates")}>
+    <Section id="certificates" title={t("sections.certificates")} side="right" wide>
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
         {certificates.map((c) => (
           <a

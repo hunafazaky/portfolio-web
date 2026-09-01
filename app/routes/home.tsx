@@ -3,6 +3,7 @@ import { useLang } from "~/lib/language";
 import { usePortfolioData } from "~/hooks/usePortfolioData";
 import { Nav } from "~/components/layout/Nav";
 import { Footer } from "~/components/layout/Footer";
+import { ScrollProgressBar } from "~/components/ui/ScrollProgressBar";
 import { Hero } from "~/components/sections/Hero";
 import { Summary } from "~/components/sections/Summary";
 import { Experience } from "~/components/sections/Experience";
@@ -41,6 +42,7 @@ export default function Home() {
 
   return (
     <>
+      <ScrollProgressBar />
       <Nav />
       <main>
         <Hero profile={data.profile} />

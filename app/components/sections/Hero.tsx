@@ -3,13 +3,15 @@ import { useTranslation } from "react-i18next";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import { LinkButton } from "~/components/ui/Button";
 import { Container } from "~/components/ui/Container";
+import { ContourDivider } from "~/components/ui/ContourDivider";
 import type { Profile } from "~/lib/types";
 
 export function Hero({ profile }: { profile: Profile }) {
   const { t } = useTranslation();
   return (
-    <section className="bg-grid border-b border-border py-24">
-      <Container>
+    <>
+      <section className="bg-grid py-24">
+        <Container>
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,7 +35,9 @@ export function Hero({ profile }: { profile: Profile }) {
             </LinkButton>
           )}
         </motion.div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+      <ContourDivider />
+    </>
   );
 }
